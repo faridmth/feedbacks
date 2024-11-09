@@ -1,7 +1,5 @@
 import { PrismaClient } from "@prisma/client"
 import { NextResponse } from "next/server"
-import { auth } from "../../../../auth"
-import { comment } from "postcss"
 
 const prisma = new PrismaClient()
 
