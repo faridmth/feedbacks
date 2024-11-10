@@ -28,6 +28,7 @@ const PostsWrapper = ({userid}) => {
     <>
         {
             posts.map(post=>{
+                console.log(post.author.image)
                 return <Post 
                 key={post.id}
                 postid={post.id}

@@ -2,7 +2,9 @@
 import { useState } from "react";
 import Button from "./Button"
 import toast from 'react-hot-toast';
+import { useRouter } from "next/navigation";
 const PostForm = ({userid}) => {
+    const router= useRouter()
     const [content,setContent]=useState('')
     const [title,setTitle]=useState('')
     const [loading,setLoading]=useState(false)
@@ -10,7 +12,7 @@ const PostForm = ({userid}) => {
         e.preventDefault()
         setLoading(true)
         try{
-            const post = await fetch('./api/post',{
+            let post = await fetch('./api/post',{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
@@ -21,21 +23,20 @@ const PostForm = ({userid}) => {
                     title
                     })
             })
-            console.log(post)
-            if(post.status===201) {
-                toast.success("Thank you for your suggestion!")
-            }else{
-                toast.error("Submission failed. Please try again")
-            }
+            post = await post.json()
 
             setTitle('')
             setContent('')
             setLoading(false)
+            router.push(`/post/${post.postid}`)
+
 
 
         }catch(err){
             setLoading(false)
             console.error(err)
+            toast.error("Submission failed. Please try again")
+
         }
     }
   return (

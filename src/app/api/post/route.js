@@ -33,7 +33,7 @@ export async function POST(req){
             }
         })
 
-        return NextResponse.json(post,{status:201})
+        return NextResponse.json( {postid : post.id},{status:201})
 
     
     }catch(err){

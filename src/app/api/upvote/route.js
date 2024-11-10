@@ -17,6 +17,8 @@ export async function POST(req){
         return NextResponse.json({message:"upvote added"},{status:201})
 
     }catch(err){
+        console.error("Error fetching posts:", err.message || err);
+
         return NextResponse.json({error:"Something went wrong !"},{status:500})
 
     }

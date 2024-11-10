@@ -11,12 +11,13 @@ const UpvoteBtn = ({upvotesCount,postid,userid,upvotes}) => {
           setUppvoted(true)
         }
       },[])
-    const handleUppvote = async()=>{
+    const handleUppvote = async(e)=>{
+      e.stopPropagation();
         setUppvoted(pre=>!pre)
         if(uppvoted){
           setUppvotedNum(pre=>pre-1)
           try{
-            const uppvote = await fetch("./api/upvote",{
+            const uppvote = await fetch("/api/upvote",{
               method:"DELETE",
               headers:{
                 "Content-Type":"application/json"
@@ -30,11 +31,13 @@ const UpvoteBtn = ({upvotesCount,postid,userid,upvotes}) => {
           }catch(err){
             console.error(err)
             setUppvotedNum(pre=>pre+1)
+            setUppvoted(pre=>!pre)
+
           }
         }else{
           setUppvotedNum(pre=>pre+1)
           try{
-            const uppvote = await fetch("./api/upvote",{
+            const uppvote = await fetch("/api/upvote",{
               method:"POST",
               headers:{
                 "Content-Type":"application/json"
@@ -48,6 +51,8 @@ const UpvoteBtn = ({upvotesCount,postid,userid,upvotes}) => {
           }catch(err){
             console.error(err)
             setUppvotedNum(pre=>pre-1)
+            setUppvoted(pre=>!pre)
+
           }
         }
       }
