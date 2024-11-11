@@ -27,6 +27,23 @@ export async function GET(request, { params }) {
                 userid:true
             }
         },
+        comments:{
+          select:{
+            id:true,
+            content:true,
+            updatedAt:true,
+            author:{
+              select:{
+                id:true,
+                name:true,
+                image:true
+              }
+            } 
+          },
+          orderBy:{
+            createdAt:"desc"
+          }
+        },
         _count:{
             select:{
                 upvotes:true

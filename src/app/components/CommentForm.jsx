@@ -1,28 +1,40 @@
 'use client'
 import Button from "@/app/components/Button";
 import { useState,useEffect } from "react";
+import { useComments } from "./commentsContext";
+import toast from "react-hot-toast";
 
 const CommentForm = ({postid,authorid}) => {
+  const {triggerRefresh}=useComments()
     const [comment,setComment]=useState('')
-    const handleClick = async ()=>{
+    const handleClick = async () => {
       try {
-        fetch("../api/comment",{
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          content:comment,
-          postid,
-          authorid
-        })
+        const response = await fetch("../api/comment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            content: comment,
+            postid,
+            authorid
+          })
+        });
     
-        })
-    
+        if (!response.ok) {
+          throw new Error('Failed to post comment');
+        }    
+        setComment(''); 
+        
+        toast.success('Comment Posted!');
+        triggerRefresh(); 
+        
       } catch (err) {
-        console.error(err)
+        toast.error("Something went wrong. Try again.");
+        console.log(err);
       }
-    }
+    };
+    
   return (
     <div className="w-full  flex flex-col items-center">
          <textarea
@@ -37,7 +49,7 @@ const CommentForm = ({postid,authorid}) => {
       
             ></textarea>
           <div className='w-full'>
-             <Button text="coomment" action={handleClick}/>
+             <Button text="Add Comment" action={handleClick}/>
           </div>
       
     </div>

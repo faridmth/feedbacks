@@ -57,7 +57,7 @@ const UpvoteBtn = ({upvotesCount,postid,userid,upvotes}) => {
         }
       }
   return (
-    <div className={`group flex flex-col items-center justify-center
+    <div className={`group flex flex-col items-center justify-center cursor-pointer
         border-1 ml-4 border-border-[#f3f3f3] rounded-2xl px-4 py-2 transition-all duration-200 ease-in-out
         ${uppvoted?"bg-[#e16540]":""}`}
        onClick={handleUppvote}

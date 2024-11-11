@@ -8,3 +8,7 @@
 .border-1{
     border-width: 1px;
 }
+
+.text-responsive {
+    font-size: clamp(1rem, 2vw + 1rem, 2.5rem);
+}

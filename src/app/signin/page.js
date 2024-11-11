@@ -9,7 +9,7 @@ const page = async() => {
   if(session){redirect('/dashboard')}
   return (
     <div className='h-[100vh]  flex  items-center justify-center'>
-     <div className='bg-white border-2 border-[#f5f4f4] p-20 rounded-md flex flex-col gap-7 items-center w-full max-w-[500px]'>
+     <div className='bg-white border-2 border-[#f5f4f4] sm:p-20 p-5 rounded-md flex flex-col gap-7 items-center w-full max-w-[500px]'>
      <div className='w-full'>
         <button 
             className='flex gap-2 border-2 rounded-md bg-black justify-center text-white px-6 py-3 w-full'

@@ -10,8 +10,8 @@ datasource db {
 model User {
   id            String    @id @default(cuid())  // Changed from Int to String
   email         String    @unique
-  name          String?
-  image         String?
+  name          String?   @default("Anonymous")
+  image         String?   @default("https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?t=st=1731344132~exp=1731347732~hmac=53253e86137cebf15ecc00fa1d6eb098813a1884e578dc7626d95d5765f977dd&w=740")
   role          String     @default("user")
   emailVerified DateTime?
   accounts      Account[]
