@@ -3,7 +3,7 @@ import { formatDate } from "../functions/formateDate"
 import UpvoteBtn from "./UpvoteBtn"
 import DeletePostBtn from "./DeletePostBtn"
 const PostDetails = async({postId,userId}) => {
-        let post = await fetch(`http://localhost:3000/api/p/${postId}`,{cache: 'force-cache' })
+        let post = await fetch(`https://feedbacks.vercel.app/api/p/${postId}`,{cache: 'force-cache' })
         post = await post.json()
         post=post.post
         console.log(post)
