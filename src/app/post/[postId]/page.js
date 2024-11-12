@@ -4,13 +4,17 @@ import { auth } from "../../../../auth";
 import PostDetails from "@/app/components/PostDetails";
 import CommentsWrapper from "@/app/components/CommentsWrapper";
 import { CommentsProvider } from "@/app/components/commentsContext";
+import LogOutBtn from "@/app/components/LogOutBtn";
 const page = async({params}) => {
   const {postId} =await params
   const session = await auth()  
   return (
-    <div className=" lg:px-32 xl:px-44 px-3 py-3 lg:py-12" >
+    <div className="lg:px-44 sm:px-10 mb-6 p-2" >
       <CommentsProvider>
-      <GoTodashboardBtn/>
+      <div className=" sm:mt-16 flex justify-between">
+        <GoTodashboardBtn/>
+        <LogOutBtn/>
+      </div>
         <div className="flex flex-col md:flex-row  mt-10 lg:gap-20">
           <div className="md:w-1/2 md:max-w-96 md:mr-12 mb-10 w-full">
             <PostDetails postId={postId} userId={session.userId}/>

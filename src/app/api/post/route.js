@@ -37,7 +37,7 @@ export async function POST(req){
 
     
     }catch(err){
-        console.error(err)
+        console.error("Error :", err.message || err);
         return NextResponse.json({error:"failed to create a Post"},{status:500})
 
     }

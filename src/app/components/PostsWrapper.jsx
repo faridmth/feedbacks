@@ -9,7 +9,10 @@ const PostsWrapper = ({userid}) => {
         setLoading(true)
         const getPosts = async ()=>{
             try{
-                let posts = await fetch('./api/post')
+                let posts = await fetch('./api/post',{
+                    cache: 'no-store',
+                    next:{revalidate:60}
+                })
             posts = await posts.json()
             setPosts(posts)
             setLoading(false)

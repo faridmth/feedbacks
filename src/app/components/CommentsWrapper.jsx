@@ -11,7 +11,6 @@ const CommentsWrapper = ({postid,authorid}) => {
                 let fetchComments = await fetch(`/api/p/${postid}`)
                 fetchComments = await fetchComments.json()
                 const comments = fetchComments.post.comments
-                console.log(comments)
                 setComments(comments)
 
             } catch (err) {

@@ -5,9 +5,11 @@ import { useComments } from "./commentsContext";
 import toast from "react-hot-toast";
 
 const CommentForm = ({postid,authorid}) => {
+  const[loading,setLoading]=useState(false)
   const {triggerRefresh}=useComments()
     const [comment,setComment]=useState('')
     const handleClick = async () => {
+      setLoading(true)
       try {
         const response = await fetch("../api/comment", {
           method: "POST",
@@ -24,14 +26,15 @@ const CommentForm = ({postid,authorid}) => {
         if (!response.ok) {
           throw new Error('Failed to post comment');
         }    
-        setComment(''); 
-        
-        toast.success('Comment Posted!');
         triggerRefresh(); 
+        setComment(''); 
+        setLoading(false)
+        toast.success('Comment Posted!');
         
       } catch (err) {
         toast.error("Something went wrong. Try again.");
         console.log(err);
+        setLoading(false)
       }
     };
     
@@ -49,7 +52,7 @@ const CommentForm = ({postid,authorid}) => {
       
             ></textarea>
           <div className='w-full'>
-             <Button text="Add Comment" action={handleClick}/>
+             <Button text={loading?"Adding comment...":"Add Comment"} action={handleClick} disabeld={loading}/>
           </div>
       
     </div>
