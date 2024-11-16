@@ -6,7 +6,7 @@ const PostDetails = async({postId,userId}) => {
        let post =null
        try{
         console.log(process.env.NEXT_PUBLIC_APP_HOME_URL)
-        post = await fetch(`${process.env.NEXT_PUBLIC_APP_HOME_URL}/api/p/${postId}`,{cache: 'force-cache' })
+        post = await fetch(`${process.env.NEXT_PUBLIC_APP_HOME_URL}/api/p/${postId}`)
         post = await post.json()
         post=post.post
         console.log(post)

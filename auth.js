@@ -19,5 +19,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages : {
     verifyRequest: "/dashboard",
     AccessDenied:'/signin'
+  },
+  session:{
+    maxAge:24 * 60 * 60
   }
 })
