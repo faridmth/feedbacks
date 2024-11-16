@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET(request, { params }) {
-  const { postid } = params;
+  const { postId } = params;
   console.log("POST ID :")
   console.log(postid)
   if (!postid) {
