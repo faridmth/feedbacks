@@ -24,6 +24,7 @@ const PostForm = ({userid}) => {
                     })
             })
             post = await post.json()
+            console.log(post.ok)
 
             setTitle('')
             setContent('')

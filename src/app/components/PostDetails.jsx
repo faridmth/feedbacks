@@ -3,10 +3,15 @@ import { formatDate } from "../functions/formateDate"
 import UpvoteBtn from "./UpvoteBtn"
 import DeletePostBtn from "./DeletePostBtn"
 const PostDetails = async({postId,userId}) => {
-        let post = await fetch(`https://feedbacks-five.vercel.app/api/p/${postId}`,{cache: 'force-cache' })
+       let post =null
+       try{
+        post = await fetch(`https://feedbacks-five.vercel.app/api/p/${postId}`,{cache: 'force-cache' })
         post = await post.json()
         post=post.post
         console.log(post)
+       }catch(err){
+        console.log(err)
+       }
 
     if(post===null) return <h2 className="mt-12">Loading Post...</h2>
   return (

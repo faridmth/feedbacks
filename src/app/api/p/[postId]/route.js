@@ -4,8 +4,9 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET(request, { params }) {
-  const { postid } =await params;
-
+  const { postid } = params;
+  console.log("POST ID :")
+  console.log(postid)
   if (!postid) {
     return NextResponse.json({ message: "postId required" }, { status: 404 });
   }
@@ -66,11 +67,11 @@ export async function GET(request, { params }) {
       message: "Success" 
     }, { status: 200 });
 
-  } catch (error) {
-    console.error('Error fetching post:', error);
+  } catch (err) {
+    console.error("Error :", err.message || err);
     return NextResponse.json({ 
       message: "Internal server error",
-      error: error.message 
+      error: err.message 
     }, { status: 500 });
   }
 }
