@@ -5,9 +5,14 @@ import PostDetails from "@/app/components/PostDetails";
 import CommentsWrapper from "@/app/components/CommentsWrapper";
 import { CommentsProvider } from "@/app/components/commentsContext";
 import LogOutBtn from "@/app/components/LogOutBtn";
+import { redirect } from "next/navigation";
 const page = async({params}) => {
   const {postId} =await params
-  const session = await auth()  
+  const session = await auth()
+  if(!session){
+    redirect('/signin')
+  }  
+  console.log(session)
   return (
     <div className="lg:px-44 sm:px-10 mb-6 p-2" >
       <CommentsProvider>

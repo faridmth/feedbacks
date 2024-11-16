@@ -4,9 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET(request, { params }) {
-  const { postId } = params;
-  console.log("POST ID :")
-  console.log(postId)
+  const { postId } =await params;
   if (!postId) {
     return NextResponse.json({ message: "postId required" }, { status: 404 });
   }
