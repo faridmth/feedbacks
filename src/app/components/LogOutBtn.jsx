@@ -1,16 +1,26 @@
-import { signOut } from "../../../auth"
-import { redirect } from "next/navigation"
+"use client"; // Ensure this is a client component
+
+import { signOut } from "next-auth/react";
 
 const LogOutBtn = () => {
-  return (
-    <form action={async()=>{
-         "use server"
-         signOut()
-         redirect('/')
-     }}>
-        <button type="submit" className="underline">LogOut</button>
-    </form>
-  )
-}
+  const handleLogout = async () => {
+    try {
+      // This assumes you're using NextAuth.js
+      await signOut({ redirect: true, callbackUrl: "/" });
+    } catch (error) {
+      console.error("Error during sign-out:", error);
+    }
+  };
 
-export default LogOutBtn
+  return (
+    <button
+      type="button"
+      onClick={handleLogout}
+      className="underline"
+    >
+      LogOut
+    </button>
+  );
+};
+
+export default LogOutBtn;

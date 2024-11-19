@@ -4,17 +4,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET(request, { params }) {
-  const { postId } = params;
-  console.log("POST ID :")
-  console.log(postid)
-  if (!postid) {
+  const { postId } =await params;
+  if (!postId) {
     return NextResponse.json({ message: "postId required" }, { status: 404 });
   }
 
   try {
     const post = await prisma.post.findUnique({
       where: {
-        id: postid
+        id: postId
       },
       include: {
         author: {
@@ -77,16 +75,16 @@ export async function GET(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
-  const { postid } = await params;
+  const { postId } = await params;
 
-  if (!postid) {
+  if (!postId) {
     return NextResponse.json({ message: "postId required" }, { status: 404 });
   }
 
   try {
     await prisma.post.delete({
       where: {
-        id: postid
+        id: postId
       }
     });
 
