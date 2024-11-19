@@ -12,7 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   })
     ,Resend({
-    from: "onboarding@resend.dev",
+    from: "farid@getfeedbacks.store",
   })],
   adapter: PrismaAdapter(prisma),
   debug:true,
